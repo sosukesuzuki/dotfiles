@@ -1,0 +1,16 @@
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/suzuki/.sdkman"
+export XDG_CONFIG_HOME=~/.config
+export PATH=$PATH:/Users/suzuki/.local/bin
+autoload -U compinit
+compinit
+
+function cd() {
+  builtin cd $@ && ls;
+}
+
+PROMPT="
+ %{${fg[yellow]}%}%~%{${reset_color}%} 
+ [%n] (>ω <)👆$ "
+
+ PROMPT2='[%n]'

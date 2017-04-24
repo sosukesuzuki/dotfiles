@@ -1,0 +1,1 @@
+{'import', 'React', 'from', 'react', 'ReactDOM', 'createStore', 'redux', 'Provider', 'containers', 'configureStore', 'store', 'reducer', 'counter', 'const', 'render', 'document', 'getElementById', 'root'}

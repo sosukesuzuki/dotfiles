@@ -1,0 +1,591 @@
+*qfixgrep.jax*  For Vim バージョン 7.2  Last change: 2013 August 1
+==============================================================================
+       Description: QFixGrep
+            Author: fuenor <fuenor@gmail.com>
+            Web(Japanese):
+            http://sites.google.com/site/fudist/grep
+==============================================================================
+  CONTENTS                          *qfixgrep* *qfixgrep_help* *qfixgrep_contents*
+  1. Intro                                           |qfixgrep_intro|
+  2. インストール                                    |qfixgrep_install|
+    2.1 Windowsの場合                                |qfixgrep_install_windows|
+    2.2 異なるエンコーディングが混在する場合         |qfixgrep_multiencoding|
+      2.2.1 マルチエンコーディングgrepモード         |qfixgrep_multigrep|
+      2.2.2 agrep.vim                                |qfixgrep_agrep|
+  3. コマンド                                        |qfixgrep_command|
+  4. コマンドライン                                  |qfixgrep_commandline|
+  5. QuickFix                                        |qfixgrep_quickfix|
+  6. QuickFix/ロケーションリスト                     |qfixgrep_window|
+  7. オプション                                      |qfixgrep_option|
+  8. Appendix                                        |qfixgrep_appendix|
+
+==============================================================================
+1. Intro                                                *qfixgrep_intro*
+
+QFixGrepはVim用のプレビュー＆絞り込み検索(and検索)付きのgrepプラグインです。
+
+固定文字列検索、再帰grep、現在開いているバッファのみ対象のGrepや、QuickFixウィ
+ンドウ上で絞り込み検索してからのジャンプも可能になります。
+内部grep(vimgrep)はもちろん、外部grepを使用の際にもutf-8, euc-jp, cp932の日本
+語(全角文字) grep/検索が可能です。
+
+外部grepでうまく日本語が扱えない場合、特にutf-8化したWindowsの外部grepを使用し
+たい場合に有用です。
+また、cp932(Shift_JIS)における ー ソ 表 などの「ダメ文字」にも対処がなされてい
+ます。
+
+==============================================================================
+2. インストール                                         *qfixgrep_install*
+
+QFixGrepにruntimepathを通します。
+
+最低限必要なのはダウンロードしたファイルを解凍して作成されたディレクトリにラン
+タイムパスを通すことだけです
+QFixHowm/QFixMemoを使用しているならインストールは不要です。
+
+以降はディレクトリをqfixgrepとリネームしたとして解説を行いますので適宜読み替え
+てください。
+.vimrc >
+  set runtimepath+=c:/temp/qfixgrep
+
+この状態で現在使用しているgrepをそのまま実行してQuickfixウィンドウを開くだけで
+もプレビューや絞込みは有効になります。
+
+android/iOSで使用する場合 >
+  " 検索にagrep.vimを使用する
+  let mygrepprg='agrep.vim'
+<
+  基本設定はUnixと同じですがandroid/iOSで外部grepが使用できない場合は上記設定
+  を追加してください。
+  busyboxのgrepは日本語が扱えません。
+  速度的に不満な場合はGNU grepを使用してください。
+  https://sites.google.com/site/fudist/Home/qfixhowm/other-service/howm-android
+
+Windowsは2.1以降(|qfixgrep_install_windows|)へ進んでください。
+なおWindowsの場合はできるだけ外部grepを使用することを推奨します。
+
+その他のOSはコマンド解説(|qfixgrep_command|)へ進みますが、出来れば異なるエン
+コーディングが存在する場合(|qfixgrep_multiencoding|)に目を通しておいて下さい。
+
+------------------------------------------------------------------------------
+QuickFixウィンドウのプレビューや絞り込み
+
+QFixGrepは「ロケーションリスト」を使用するので、デフォルトでは「QuickFixウィン
+ドウ」を開いてもプレビューや絞り込み等は行いません。
+QuickFixウィンドウでもプレビューや絞り込みを有効にしたい場合は以下を設定してく
+ださい。
+>
+  " プレビューや絞り込みをQuickFix/ロケーションリストの両方で有効化(デフォルト:2)
+  let QFixWin_EnableMode = 1
+
+  " QFixHowm/QFixGrepでロケーションリストを使用する/しない
+  let QFix_UseLocationList = 1
+
+上記の設定を有効にすると、QuickFixウィンドウを使用するmakeや他のプラグイン等で
+もプレビューや絞込等が有効になります。
+最初はとりあえず有効にしておいて、他のプラグイン等との併用でなにか問題が起きた
+ら無効化するのをおすすめします。
+
+なお挙動面でQuicFixとロケーションリストでは異なる場合があります。
+QFixGrepでQuickFixを使用したい場合は以下を設定します。
+>
+  " プレビューや絞り込みをQuickFix/ロケーションリストの両方で有効化(デフォルト:2)
+  let QFixWin_EnableMode = 1
+
+  " QFixGrepでロケーションリストを使用する/しない
+  let MyGrep_UseLocationList = 0
+
+------------------------------------------------------------------------------
+2.1 Windowsの場合                               *qfixgrep_install_windows*
+
+Windowsの標準環境ではgrepが存在しないので代替として findstr (Windows2000以降)
+が使用されます。
+cp932(Shift_JIS)しか使用しないなら問題ありませんが、UTF-8ファイルの日本語文字列
+も検索したい場合はGNU grep互換の外部grepか、grepスクリプトagrep.vimを使用する
+必要があります。
+(cygwin上のVimであるかUTF-8のファイルを扱わない場合、本項は関係ありません)
+
+* とにかく使って見る場合
+何も設定しないか、次の設定を追加します。
+>
+  " 検索にfindstrを使用する(デフォルト)
+  let mygrepprg   = 'findstr'
+
+前述しましたが、この場合cp932(Shift_JIS)以外の日本語文字列は検索出来ません。
+findstrの正規表現は貧弱ですし、そういう意味でもできるだけ外部grepを使用するこ
+とをおすすめします。
+外部grepの使用が難しい時は、日本語を含む場合のみ標準同梱されているUTF-8文字列を
+検索可能なスクリプトagrep.vimを使用することもできます。
+>
+  " 日本語を含む場合のみagrep.vimを使用する
+  let mygrepprg   = 'findstr'
+  let myjpgrepprg = 'agrep.vim'
+
+この設定では検索文字列に日本語を含む場合だけagrep.vimを使用することになります。
+agrep.vimの正規表現はVimの正規表現を使用するため、検索文字列に日本語を含む場合
+とそうでない場合で使える正規表現が異なることになります。
+日本語と正規表現を組み合わせて検索する場合は気をつけてください。
+
+* GNU grep互換の外部grepを使用する場合
+
+一応GNU grep互換のgrepであれば動作するはずですが、おすすめなのはcygwinをインス
+トールしてcygwinのbinへパスを通すことです。
+
+パスの通った場所にgrep.exeがある場合は、次のように指定します。
+>
+  let mygrepprg = 'grep'
+
+pathを通していないなら、pathは環境に合わせてフルpathで指定して下さい。
+>
+  let mygrepprg = 'c:/cygwin/bin/grep'
+
+cygwin1.7以降のgrep.exeを使用する場合はMyGrep_cygwin17も設定してください。
+設定しない場合は一部のUTF-8文字列が検索できないことがあります。
+>
+  let mygrepprg = 'grep'
+  let MyGrep_cygwin17 = 1
+
+------------------------------------------------------------------------------
+2.2 異なるエンコーディングのファイルが混在している場合      *qfixgrep_multiencoding*
+
+UTF-8とcp932、euc-jpなど異なるエンコーディングが混在している場合はマルチエン
+コーディングgrepモードかagrep.vimを使用するとエンコーディングを気にせずgrep
+可能です。
+
+2.2.1 マルチエンコーディングgrepモード
+
+異なるエンコーディングのファイルが混在している場合にgrepを複数回実行して、エン
+コーディングを気にせず日本語検索が可能です。
+マルチエンコーディングgrepモードの切替は<Leader>rmでも行えます。
+なお検索文字列に日本語を含まない場合は、一回しかgrepは実行されません。
+>
+  " マルチエンコーディングgrepモード
+  let g:MyGrep_MultiEncoding = 1
+
+マルチエンコーディングgrepで使用するエンコーディングは次のように指定します。
+>
+  " マルチエンコーディングgrep エンコーディングリスト
+  let g:MyGrep_MultiEncodingList = ['utf-8', 'cp932']
+
+findstrではcp932のみしか検索できないので次に解説するagrep.vimを使用してくださ
+い。
+
+2.2.2 agrep.vim                                            *qfixgrep_agrep*
+
+agrep.vimはVimスクリプトで実装されたgrepでマルチエンコーディングのgrepが可能で
+す。
+agrep.vimは通常のgrepやfindstrより遅いので、検索文字列に日本語を含む場合だけ
+agrep.vimを使用するというのが良いかもしれません。
+agrep.vimの正規表現はVimの正規表現を使用することになります。
+>
+  " 日本語を含む場合のみagrep.vimを使用する設定
+
+  " Windows
+  let mygrepprg   = 'findstr'
+  let myjpgrepprg = 'agrep.vim'
+  " 異なるエンコーディングが混在していてもgrep可能にする
+  let MyGrep_MultiEncodingGrepScript = 1
+
+  " unix
+  let mygrepprg   = 'grep'
+  let myjpgrepprg = 'agrep.vim'
+  " 異なるエンコーディングが混在していてもgrep可能にする
+  let MyGrep_MultiEncodingGrepScript = 1
+
+この場合は日本語を含む場合とそうでない場合で使える正規表現が異なることになるの
+で気をつける必要があります。
+
+常にagrep.vimを使用したい場合は mygrepprgでもagrep.vimを使用するように設定しま
+す。
+>
+  let mygrepprg   = 'agrep.vim'
+
+==============================================================================
+3. コマンド                                             *qfixgrep_command*
+
+https://sites.google.com/site/fudist/Home/grep/usage
+適当なファイルを開いてキーマップコマンドで検索を行うことができます。
+
+<Leader>e      通常のgrep
+<Leader>re     再帰検索のgrep
+<Leader>f      正規表現を使わない検索
+<Leader>rf     正規表現を使わない再帰検索
+<Leader>b      現在開いている全てのバッファのみを対象にgrep
+               (無名バッファは検索できない)
+
+デフォルトキーマップリーダーは g, なので<Leader>f は g,f と読み替えてください。
+キーマップリーダーは以下の順で決定されます。
+  1. qfixmemo_mapleader
+  2. QFixHowm_Key
+  3. MyGrep_Key
+
+検索するファイルの種類を指定する際は、*.vim *.txt のように 複数の種類を指定可
+能です。grep後、自動的にQuickfixウィンドウが開き、検索レジスタにはgrepした文字
+列が登録されます。
+
+再帰検索はコマンドで切り替えずに、検索ファイル指定で **/*.vimのように**/を指定
+して再帰検索grepを行うことも可能です。
+
+NOTE:
+デフォルトではカーソル位置の単語を拾ってセットします。検索語は<C-w>や<C-u>で削
+除可能ですがデフォルトで拾う/拾わないは以下の設定で変更可能です。
+>
+  " QFixGrepの検索時にカーソル位置の単語を拾う/拾わない
+  let MyGrep_DefaultSearchWord = 1
+
+------------------------------------------------------------------------------
+検索の基点ディレクトリとファイルエンコーディングは以下のコマンドで変更可能で
+す。
+
+<Leader>rm     grepを複数回実行してマルチエンコーディングgrep
+<Leader>rG     検索するファイルエンコーディング指定
+<Leader>rD     検索ディレクトリ基点をカレントディレクトリ/ファイル基点でトグル
+<Leader>rM     ディレクトリを常にサブディレクトリも検索する
+
+ディレクトリ内に異なるエンコーディングのファイルが混在している場合は<Leader>rm
+でマルチエンコーディングgrepモード(|qfixgrep_multigrep|)に切り替えることができ
+ます。
+
+検索ディレクトリの基点は「カレントディレクトリ」がデフォルトですが、<Leader>rD
+でオフにすると「ファイルの存在するディレクトリ」を基点にして検索します。
+autochdirやプラグイン等でカレントディレクトリを常にファイルの存在するディレク
+トリになるよう設定している場合はどちらでも基点はかわりません。
+
+------------------------------------------------------------------------------
+コマンドを大文字にすると前回の結果を削除せず検索結果を追加します。
+<Leader>E      通常のgrep
+<Leader>rE     再帰検索のgrep
+<Leader>F      正規表現を使わない検索
+<Leader>rF     正規表現を使わない再帰検索
+<Leader>B      現在開いている全てのバッファのみを対象にgrep
+               (無名バッファは検索できない)
+
+==============================================================================
+4. コマンドライン                                       *qfixgrep_commandline*
+
+コマンドラインからはディレクトリやファイルエンコーディングを指定してgrep出来ま
+す。コマンドモードで使用できるファイル指定(*.txt等)は一つだけです。
+パス指定には ./などの相対パスも使用可能です。
+>
+  :Grep 検索文字 c:/temp/*.txt
+
+対象ファイルのエンコーディング指定には --fenc= を使用します。
+>
+  :Grep --fenc=utf-8 エンコーディング指定して検索 ./temp/*.txt
+
+空白を含む検索文字列は " " でくくって指定して、空白を含むパスは \ でエスケープ
+して指定します。
+検索に " " でくくった文字列自体を指定したい場合は " " を二重にするか、 \" でく
+くって下さい。
+>
+  :Grep "空白を含む 検索文字とパス" ~/My\ Documents/txt/*.txt
+
+各種オプションも指定可能です。
+指定可能なオプションは mygrepprgに設定しているgrepのヘルプを参照してください。
+再帰検索は大抵 -r (findstrは /s)です。
+>
+  :Grep -r 再帰検索 ./temp/*.txt
+
+再帰検索には RGrep、RFGrepも使えます。
+>
+  :RGrep 再帰検索 *.txt
+
+固定文字列検索には -F のようにオプションを指定するか FGrepを使用してください。
+>
+  :FGrep 固定文字列検索 ./temp/*.txt
+
+Grepadd、 FGrepadd、RGrepadd、RFGrepadd を使用すると前回の結果を削除することな
+く検索結果が追加されます。
+>
+  :Grepadd 追加検索 ./temp/*.txt
+
+結果表示は標準のgrepと違って、QuickFixウィンドウではなく、ロケーションリストで
+行われるため、ウィンドウの再表示はQFixCopenで行ってください。
+>
+  :QFixCopen ウィンドウ表示
+
+Vim標準のコマンドとしては:lopenが使えますが、:QFixCopenか<C-w>, <C-w>.のキーマ
+ップを使用することを推奨します。
+
+QFixGrepでもQuickFixウィンドウを使用したい場合は以下を設定してください。
+>
+  " QuickFixウィンドウを使用する
+  let QFix_UseLocationList = 0
+
+この場合は:copenでウィンドウを開くことになります。
+
+==============================================================================
+5. QuickFix                                             *qfixgrep_quickfix*
+
+Quickfixウィンドウコマンド
+
+<C-w>,         Quickfixウィンドウのオープン/クローズ
+<C-w>.         Quickfixウィンドウへ移動
+               多数のウィンドウを開いていても、一度でQuickfixウィンドウに移動
+               出来ます。
+               5<C-w>. のようにカウント指定すると指定サイズの高さに変更。
+               Quickfixウィンドウ上ではウィンドウ高さをデフォルトに戻します。
+<C-w>/         以降使用するウィンドウをQuickFix/ロケーションリストでトグル
+
+Quickfixウィンドウ上での操作
+q              Quickfixウィンドウのクローズ
+<CR>           ファイルを開く。
+               3<CR>のように番号を指定すると対応する行のファイルを開く。
+               ビジュアルモードで選択している場合は選択ファイルをすべて開く。
+<S-CR>         画面分割でファイルを開く
+<C-l>          QuickFixウィンドウに表示されているパスを最も短く表示されるよう
+               にする
+&              QuickFixウィンドウをロケーションリストへコピー
+<C-g>          QuickFixウィンドウをQFixListへコピー
+
+------------------------------------------------------------------------------
+機能切替
+
+i              プレビュー表示ON/OFF
+I              ファイルタイプのハイライト表示ON/OFF。
+               環境やファイルサイズによっては重くなるので、その場合はOFFにして
+               ください。
+J              ジャンプ後にQuickfixウィンドウを閉じる/閉じないをトグル
+<C-h>         「ハイスピードプレビュー」 ON/OFF
+               プレビュー表示方法をノーマルモードとハイスピードモードでトグル
+               する。
+
+------------------------------------------------------------------------------
+ソートと絞り込み検索
+
+S              更新時間順、名前順などの「ソート」切替。
+s              「絞り込み検索」
+               文字列を指定して絞り込み。
+               Quickfixに表示されている部分(各行1kバイト)のみが対象
+r             「絞り込み検索」
+               s コマンドとは逆に、指定した文字列を ”含まない” 行に絞り込み
+               ます。
+u              ソートや絞り込みのアンドゥ
+U              ソートや絞り込みを全て元に戻す
+
+  ・絞り込み対象はQuickfixに表示されている部分(各行1kバイト)のみが対象です。
+  ・<C-r>/ で検索文字列が貼り付け可能で、入力画面では <C-u>、<C-w>、ヒストリも
+    有効です。
+
+ソートの種類
+m              ファイルの更新時間 (mtime)
+n              ファイル名 (name)
+t              表示されているテキスト内容 (text)
+
+  ・逆順にしたい場合は rt のように、最初に r を付けて下さい。
+
+------------------------------------------------------------------------------
+Quickfixウィンドウの保存と読込 (Quickfix上のコマンド)
+
+A
+<Leader>w      現在のQuickfixウィンドウを保存する。
+               3Aのようにカウント指定すると、ファイル名に指定カウントを付加し
+               て保存する。
+               ~/.qfgrep.txt → ~/.qfgrep3.txt
+O
+<Leader>k      保存されているQuickfixウィンドウを読み込む。
+               3Oのようにカウント指定すると、ファイル名に指定カウントを付加し
+               て読み込む。
+               ~/.qfgrep.txt → ~/.qfgrep3.txt
+
+何かgrepしてからQuickfixウィンドウ上で A を押すと現在のgrep結果が保存されます。
+一時的に保存したいだけなら & コマンドでロケーションリストにコピーしたほうが良
+いでしょう。
+
+==============================================================================
+6. QuickFix/ロケーションリスト                                 *qfixgrep_window*
+
+プレビューや絞り込みの拡張機能の制御は以下の２つのオプションで変更可能です。
+
+プレビューや絞り込みの拡張機能有効化オプション
+(QFixWin_EnableMode)
+| 0 | なにもしない                            |
+| 1 | QuickFix/ロケーションリストの両方で有効 |
+| 2 | ロケーションリストのみ有効              |
+| 3 | QFixMemo/QFixGrepコマンドのみ有効       |
+
+QFixHowm/QFixGrepで指定するウィンドウ指定
+(QFix_UseLocationList)
+| 0  | QFixHowm/QFixGrepでQuickFixウィンドウを使用する |
+|    | (コマンドモードからのウィンドウ再表示は :copen) |
+| 1  | QFixHowm/QFixGrepでロケーションリストを使用する |
+|    | (コマンドモードからのウィンドウ再表示は :lopen) |
+
+------------------------------------------------------------------------------
+6.1 デフォルト
+
+デフォルトではmakeや他のプラグインから「QuickFixウィンドウ」を開いてもプレ
+ビューや絞り込み等は行いません。
+これは一部のQuickFixウィンドウを使用するプラグイン等との相性問題を回避するため
+です。
+ただ殆どの場合はQuickFixウィンドウでのプレビューや絞り込みが有効にしておいたほ
+うがなにかと便利なので、次の設定を試してみてください。
+>
+  " プレビューや絞り込みの拡張機能有効化オプション
+  " 1 : QuickFix/ロケーションリストの両方で有効
+  let QFixWin_EnableMode = 1
+
+最初はとりあえず有効にしておいて、何か問題があったらデフォルトに戻すことをおす
+すめします。
+
+------------------------------------------------------------------------------
+6.2 ロケーションリスト
+
+QuickFixウィンドウとロケーションリストはどちらも機能的には同じものですが Vimと
+対応しているのが QuickFixウィンドウで、ウィンドウと対応しているのがロケーショ
+ンリストです。
+このためロケーションリストは対応したウィンドウと同時に破棄される一時的なウィン
+ドウ(バッファ)といえます。
+詳しくは|quickfix|や|location-list| を参照してください。
+
+ただQuickFixウィンドウとロケーションリストは若干挙動が異なるようで、動作として
+はQuickFixウィンドウを使用するほうが好ましい動作をするようです。
+QFixHowm/QFixGrepでもQuickFixウィンドウを使用するには以下のようにします。
+>
+  " プレビューや絞り込みの拡張機能有効化オプション
+  " 1 : QuickFix/ロケーションリストの両方で有効
+  let QFixWin_EnableMode = 1
+
+  " QFixHowm/QFixGrepでロケーションリストを使用する/しない
+  let QFix_UseLocationList = 0
+
+この場合は何か問題があったら拡張機能をQFixHowm/QFixGrep以外では無効化するとよ
+いでしょう。
+>
+  " プレビューや絞り込みの拡張機能有効化オプション
+  " 3 : QFixHowm/QFixGrepのみ有効
+  let QFixWin_EnableMode = 3
+
+==============================================================================
+7. オプション                                           *qfixgrep_option*
+
+QuickFix処理制御 >
+
+  " QuickFix処理制御
+  " 0 : なにもしない
+  " 1 : QuickFix/ロケーションリストの両方で有効
+  " 2 : ロケーションリストのみ有効
+  " 3 : QFixMemo/QFixGrepコマンドで開いた場合のみ有効
+  let QFixWin_EnableMode = 2
+
+QuickFixウィンドウ >
+
+  " QuickFixウィンドウでプレビューを有効にする
+  let QFix_PreviewEnable = 1
+
+  " QuickFixウィンドウの高さ
+  let QFix_Height = 0
+  " QuickFixウィンドウの幅
+  let QFix_Width = 0
+  " QuickFixウィンドウの開き方
+  let QFix_CopenCmd = ''
+  " QuickFixウィンドウでカーソルラインを表示
+  let QFix_CursorLine = 1
+  " カレントウィンドウの最低幅(Vim設定値)
+  set winwidth=20
+  " QuickFixウィンドウのプレビューでfiletype別のハイライトを有効にする
+  let QFix_PreviewFtypeHighlight = 1
+
+  " QuickFixウィンドウから開いた後ウィンドウを閉じる
+  let QFix_CloseOnJump = 0
+  " QuickFixウィンドウの <S-CR> は分割ではなくタブで開くには 'tab'に設定する
+  let QFix_Edit = ''
+  " QuickFixウィンドウではなくロケーションリストを使用する
+  let QFix_UseLocationList = 1
+
+プレビューウィンドウ >
+
+  " プレビュー対象外ファイルの指定
+  let QFix_PreviewExclude = '\.pdf$\|\.mp3$\|\.jpg$\|\.bmp$\|\.png$\|\.zip$\|\.rar$\|\.exe$\|\.dll$\|\.lnk$'
+  " プレビューウィンドウの高さ(Vim設定値)
+  set previewheight=12
+  " プレビューウィンドウの高さ(previewheightを使用したくない場合のみ指定)
+  let QFix_PreviewHeight = 12
+  " プレビューウィンドウの幅
+  let QFix_PreviewWidth  = 0
+  " プレビューウィンドウの開き方指定
+  let QFix_PreviewOpenCmd = ''
+  " プレビュー画面のカーソルラインを表示
+  let QFix_PreviewCursorLine = 1
+  " プレビューウィンドウの折り返し表示
+  let QFix_PreviewWrap = 1
+
+grepオプション >
+
+  " Grepコマンドのキーマップ
+  let MyGrep_Key  = 'g'
+  " Grepコマンドの2ストローク目キーマップ
+  let MyGrep_KeyB = ','
+
+  " grep対象にしたくないファイル名の正規表現
+  let MyGrep_ExcludeReg = '[~#]$\|\.dll$\|\.exe$\|\.lnk$\|\.o$\|\.obj$\|\.pdf$\|\.xls$'
+
+  " 使用するgrep(Windows)
+  let mygrepprg = 'findstr'
+  " Windowsでcygwin1.7以降のgrep.exeを使用する場合のみ 1 に設定
+  let MyGrep_cygwin17 = 1
+  " 使用するgrep(Unix)
+  let mygrepprg = 'grep'
+  " 日本語が含まれる場合のgrep指定
+  let myjpgrepprg = ''
+
+  " 外部grep(shell)のエンコーディング(Windows)
+  let MyGrep_ShellEncoding = 'cp932'
+  " 外部grep(shell)のエンコーディング(Unix)
+  let MyGrep_ShellEncoding = 'utf-8'
+  " 外部grep(shell)でエンコーディング変換が行われる場合のエンコーディング指定
+  " (通常はMyGrep_ShellEncodingと同一のため設定しないでください)
+  let MyGrep_FileEncoding = ''
+
+  " 検索ディレクトリはカレントディレクトリを基点にする
+  " 0 : 現バッファのファイルが存在するディレクトリ
+  " 1 : カレントディレクトリ
+  let MyGrep_CurrentDirMode = 1
+  " 検索は常に再帰検索
+  let MyGrep_RecursiveMode = 0
+
+  " 「だめ文字」対策を有効/無効
+  let MyGrep_Damemoji = 2
+  " 「だめ文字」を置き換える正規表現
+  let MyGrep_DamemojiReplaceReg = '(..)'
+  " 「だめ文字」を自分で追加指定したい場合は正規表現で指定する
+  let MyGrep_DamemojiReplace = '[]'
+
+  " ユーザ定義可能な追加オプション
+  let MyGrepcmd_useropt = ''
+
+  " QFixGrepの検索時にカーソル位置の単語を拾う/拾わない
+  let MyGrep_DefaultSearchWord = 1
+
+  " grep実行時にエラーメッセージが出たら表示
+  let MyGrep_error = 0
+
+==============================================================================
+8. Appendix                                              *qfixgrep_appendix*
+
+QFixGrepでは各機能を独立したプラグインとして実装しています。
+各プラグインのヘルプについてはdocディレクトリかソースの頭にあります。
+なお、起動時に読み込まれるのはpluginディレクトリ内のソースだけで、autoload内の
+ファイルはコマンド実行時の必要になった時に初めて読み込まれます。
+
+myqfix.vim
+QuickFixウィンドウにプレビューや絞り込み、ソートを追加するプラグインで完全に独
+立動作します。
+QuickFixウィンドウ関係処理が必要ない場合は let disable_QFixWin = 1 で無効化し
+てもQFixGrepの各種コマンドは完全に動作します。
+
+qfixlist.vim
+マルチバイト文字対応のgrepプラグインです。
+簡単な使用方法は qfixlist.vim冒頭にありますが、任意のディレクトリから任意の文
+字列を検索して結果をQuickFixリストとして取得したり、独自ウィンドウやQuickFix
+ウィンドウに表示したりすることが出来ます。
+
+agrep.vim
+Windowsで外部grepが使用できないがUTF-8の日本語文字列を検索したい場合や
+Android/iOSでgrepが使用できない場合に使用する文字列検索プラグインです。
+
+mygrep.vim (要 qfixlist.vim)
+QFixGrepの検索用キーマップやコマンドラインコマンド等を設定しています。
+
+  vim:tw=78:ts=8:ft=help:norl:et:
+

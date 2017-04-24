@@ -1,0 +1,13 @@
+emmet-vim
+ghcmod-vim
+neco-ghc
+neobundle.vim
+neocomplcache
+nerdtree
+unite.vim
+vim-filetype-haskell
+vim-json
+vim-scala
+vim-surround
+vimproc.vim
+vimshell.vim

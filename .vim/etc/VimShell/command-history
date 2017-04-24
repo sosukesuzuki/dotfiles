@@ -1,0 +1,231 @@
+tty:start
+うんち
+うんちうんち
+みやざわけんとうんち
+とださわあつきうんち
+いちはしふみたかうんち
+そり！そりすぎてそりになった
+おっぱい
+うぃーっす！どうも！しゃむでーす
+qite
+quite
+しね
+wf0wiqfiheqrfoieqrwfoqrei\'
+jjjj
+人生どうでも飯島ゆん 
+:vs
+[0m[[31merror[0m] [0mTotal time: 2 s, completed 2016/11/10 16:54:56[0m
+[0m[[31merror[0m] [0mExpected end of input.[0m
+[0m[[31merror[0m] [0mExpected 'show'[0m:tabnew
+> 
+k
+[0m[[0minfo[0m] [0mResolving org.specs2#specs2-common_2.11;3.7.2 ...[0m
+ at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1334)
+xit 
+container:start
+:tabnew
+jetty:strat
+gtgtgtsb
+scala
+touch XDG_CONFIG_HOME/nvim/dein.toml
+which $XDG_CONFIG_HOME
+which 
+which .vim
+touch $XDG_CONFIG_HOME/nvim/dein.toml
+mkdir $XDG_CONFIG_HOME
+which .config
+mkdir .config/nvim
+touch .config/nvim/dein.toml
+touch .config/nvim/dein_lazy.toml
+touch .config/nvim/init.vim
+mkdir ScalazSmple
+mkdir src
+mkdir main
+rm -f main
+rm -r main
+mkdir src/main
+mkdir src/main/scala
+mkdir project
+touch project/Build.scala
+run
+q
+1+1
+npm install -g livedown
+git clone git://github.com/shime/vim-livedown.git ~/.vim/bundle/vim-livedown
+brew cask update
+brew cask install hyperterm
+unchi
+pwd
+stack new haskellapiserver servant
+rm
+:cd ~/dev
+rm -r haskellapiserver
+g8 scalatra/scalatra-sbt
+exit
+[0m[[33mwarn[0m] [0mUPDATE: A newer kotlin-plugin is available: 1.0.5, currently running: 1.0.4[0m
+console
+onsole 
+2016-11-26 01:32:17.841:INFO:oejsh.ContextHandler:main: Started o.e.j.w.WebAppContext@6979e8cb{/,file:/Users/suzuki/dev/scalatra-api/target/webapp/,AVAILABLE}{file:/Users/suzuki/dev/scalatra-api/target/webapp/}
+sbt console
+etty:start 
+brew install leiningen
+mkdir -p ~/.lein
+$ curl -L -O https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+curl -L -O https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+chmod a+x lein
+lein
+lein new app your.domenin.hello-world
+vim
+mkdir rest_sample
+touch build.sbt
+mkdir -p src/main/scala
+sbt consple
+emacs -q -l init.el
+lein new sample
+lein new lein-sample
+lein run -m hey
+lein run -m core.clj hey
+lein run lein-sample.core hey
+lein run
+lein run -m lein-sample.core hey
+lein deps
+lein repl
+ {:name "tom", :email "tom@tom.co.jp"},
+ {:name "tom", :email "tom@tom.co.jp"}, {:name "mike", :email "mike@mike.co.jp"},
+ {:name "tom", :email "tom@tom.co.jp"}, {:name "mike", :email "mike@mike.co.jp"}, {:name "takeshi", :email "takeshi@takeshi.co.jp"}
+ {:name "tom", :email "tom@tom.co.jp"}, {:name "mike", :email "mike@mike.co.jp"}, {:name "takeshi", :email "takeshi@takeshi.co.jp"} ]))
+ {:name "tom", :email "tom@tom.co.jp"}, {:name "mike", :email "mike@mike.co.jp"}, {:name "takeshi", :email "takeshi@takeshi.co.jp"} ])){:GENERATED_KEY 14}
+ii^hhhjje:;:::::q
+cat npm-debug.log
+npm i pug-cli -g
+pug --version
+pug index.pug
+pug index.pug -i-pretty
+pug index.pug --pretty
+npm rm --global gulp
+npm install --global gulp-cli
+gulp -v
+npm install gulp --save-dev
+npm install gulp-pug --save-dev
+npm install stylus --save-dev
+npm install gulp-stylus
+npm i browser-sync --save-dev
+gulp
+gulp pug && gulp stylus
+gulp pug
+guko stylus
+gulp stylus
+npm install --save react react-dom react-redux
+npm install --save-dev webpack webpack-dev-server babel-cli babel-core babel-loader react-hot-loader eslint eslint-loader eslint-plugin-react babel-eslint file-loader babel-preset-es2015 babel-preset-react css-loader style-loader
+:q:q
+npm install --save redux
+npm start
+rein ring server-headless
+lain ring server-headless
+lein ring server-headless
+chmod u+x sbt
+./sbt
+jetty:start
+(caveman2:make-project#P"/dev/norokeTwitter/" author:"sosuke")
+j
+ 2
+sbcl --load quicklisp.lisp
+ABORT :R9 Abort main loop
+ABORT :R9 Abort main loop
+
+
+
+
+
+
+
+
+
+
+
+
+:q
+(caveman2:make-project #P"/path/to/myapp/")
+clisp
+mouyada
+say
+shine
+sine
+ha
+ha?
+sine?
+watashihabakadesu
+desu
+lskjflkj
+onanny
+slbc
+sbv;
+abcl
+sbcl
+
+rm -r norokeTwitter
+whitch norokeTwitter
+which norokeTwitter
+lein new compojure noroke-twitter-server
+git init
+git commit -m 'firstcommit'
+git remote add origin git@github.com:sosukesuzuki/FuyuyasuminoKadai.git 
+git push -u origin master
+lein ring server
+sbt run
+sbt
+npm init
+npm xmas
+npm install --save-dev babel-loader babel-plugin-add-module-wxports babel-plugin-react-html-attrs babel-plugin-transform-class-properties babel-plugin-transform-decorators-legacy babel-preset-es2015 babel-preset-react babel-preset-stage-0 react react-dom webpack webpack-dev-server
+npm install --save-dev babel-loader
+npm install --save-dev babel-plugin-add-module-exports
+npm install --save-dev babel-plugin-react-html-attrs 
+npm install --save-dev babel-plugin-transform-class-properties babel-plugin-transform-decorators-legacy babel-preset-es2015 
+npm install --save-dev babel-preset-react babel-preset-stage-0 react react-dom webpack webpack-dev-server
+cat package.json
+touch webpack.config.js
+npm install
+webpack --watch
+npm webpack --watch
+npm
+npm run
+npm run watch
+nvm ls
+ndenv -v
+ndenv global v6.9.2
+node -v
+git branch
+git checkout featureFinderBackgroundColor
+git log --oneline featureFinderBackgroundColor..topic
+git log --oneline
+npm run webpack
+npm run hot
+:q
+deps.compile
+ies -S mix
+iex -S mix
+mix deps.get
+mix deps.compile
+npm run build
+node api.js
+npm run start
+
+stack
+stack -v
+stack install ghc-mod
+stack ghc-mod
+ghc-mod
+ghc-mod --version
+stack --version
+which $PATH
+tree
+stack instal ctags
+stack install ctags
+which 07LightNovelPOP
+git add .
+git commit -m "修正"
+git push origin master
+git clone https://github.com/sosukesuzuki/sosukesuzuki.github.io
+emacs
+ls
+tmux

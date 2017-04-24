@@ -1,0 +1,1 @@
+{'true', 'browser', 'node', 'rules', 'curly', 'comma', 'dangle', 'never', 'spacing', 'eqeqeq', 'allow', 'null', 'underscore', 'unused', 'expressions', 'shadow', 'restricted', 'names', 'extend', 'native', 'quotes', 'semi', 'space', 'unary', 'infix', 'consistent', 'return', 'strict', 'parser', 'babel', 'eslint', 'plugins', 'react', 'ecmaFeatures', 'arrowFunctions'}

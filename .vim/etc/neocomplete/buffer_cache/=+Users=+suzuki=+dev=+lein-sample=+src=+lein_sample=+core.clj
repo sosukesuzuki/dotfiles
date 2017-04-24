@@ -1,0 +1,1 @@
+{'lein-sample.core', 'hello-world.core', ':require', 'compojure.core', ':refer', ':all', 'compujure.core', 'route', 'korma.db', 'defroutes', '<h1>Hello', 'World</h1>', 'route/not-found', '<h1>Page', 'found</h1>'}

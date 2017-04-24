@@ -1,0 +1,1 @@
+{'import', 'React', 'PropTypes', 'from', 'react', 'const', 'Link', 'active', 'children', 'onClick', 'return', 'span', 'href', 'preventDefault', 'propTypes', 'bool', 'isRequired', 'node', 'func', 'export', 'default'}

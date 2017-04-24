@@ -1,0 +1,1 @@
+{'import', 'React', 'PropTypes', 'from', 'react', 'Todo', 'const', 'TodoList', 'todos', 'onTodoClick', 'todo', 'onClick', 'propTypes', 'arrayOf', 'shape', 'number', 'isRequired', 'completed', 'bool', 'text', 'string', 'OnTodoClick', 'func', 'export', 'default'}

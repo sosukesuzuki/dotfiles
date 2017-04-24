@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sosuke Suzuki</title>
+    <link rel="stylesheet" type="text/css" href="../css/MyStyle.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script src="../script/MyScript.js"></script>
+    <script src="../script/MyScript02.js"></script>
+    <script src="../script/MyScript03.js"></script>
+</head>
+<body>
+    <div id="header">
+        <h1 id="Title">SosukeSuzuke's HomePage</h1>
+    </div>
+    <div id="menu">
+        <ul>
+            <a href="#about">
+                about
+            </a>
+            <a href="#skill">
+                Skill
+            </a>
+            <a href="#history">
+                History
+            </a>
+            <a href="#contact">
+                Contact
+            </a>
+        </ul>
+    </div>
+    <div id="main">
+        <img src="../img/tako.png" width="500" height="400">
+    </div>
+    <div id="about">
+        <h2>About</h2>
+        <ul class="About">
+            <li>
+                # Name
+                <ul>
+                    Sosuke Suzuki / 鈴木颯介
+                </ul>
+            </li>
+            <p></p>
+            <li>
+                # Years
+                <ul>
+                    15 years old
+                </ul>
+            </li>
+            <p></p>
+            <li>
+                # Job
+                <ul>
+                    Hight School Student
+                </ul>
+            </li>
+            <p></p>
+            <li>
+                # Hobby
+                <ul>
+                    Programing / Soccer
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div id="skill">
+        <h2>Skill</h2>
+        <h3>Unity C# / Java /  / JavaScript(jQuery)/Scala</h3>
+    </div>
+    <div id="history">
+        <h2>History</h2>
+        <ul>
+            <li>
+                2001年 おれ、誕生
+            </li>
+            <p></p>
+            <li>
+                2002年 おれ「あおちゃんぽん」
+            </li>
+            <p></p>
+            <li>
+                2003年　初めて文字を書く(おしりさま、おげんきですか)
+            </li>
+            <p></p>
+            <li>
+                幼稚園に入園したり
+            </li>
+            <p></p>
+            <li>
+                小学校に入学したりする
+            </li>
+            <p></p>
+            <li>
+                そして中学校に入学する
+            </li>
+            <p></p>
+            <li>
+                中１の夏、Life is Tech!に参加する
+            </li>
+            <p></p>
+            <li>
+                中２の冬、Unityの技術書を読み漁る
+            </li>
+            <p></p>
+            <li>
+                中３をで受験勉強中にJavaScriptを学び始める
+            </li>
+            <p></p>
+            <li>
+                無事志望校に合格する
+            </li>
+            <p></p>
+            <li>
+                TECHLOGICSに入る
+            </li>
+            <p></p>
+            <li>
+                Twitterで木下さんに声をかけていただいてHiveShibuyaにいく
+            </li>
+            <p></p>
+            <li>
+                tento.tech加入
+            </li>
+            <p></p>
+            <li>
+                いろいろあって現在に至る
+            </li>
+        </ul>
+    </div>
+    <div id="contact">
+        <h2>Contact</h2>
+        <ul>
+            <li>
+                Twitter
+                <ul>
+                    <a href="https://twitter.com/sosuke301">@sosuke301</a>
+                </ul>
+            </li>
+            <p></p>
+            <li>
+                FaceBook
+                <ul>
+                    <a href="https://www.facebook.com/profile.php?id=100008086145654">鈴木颯介</a>
+                </ul>
+            </li>
+            <p></p>
+            <li>
+                GitHub
+                <ul>
+                    <a href="https://github.com/sosukesuzuki">Sosuke Suzuki</a>
+                </ul>
+            </li>
+            <p></p>
+            <li>
+                Google+
+                <ul>
+                    <a href="https://plus.google.com/111124384435255483579">鈴木颯介</a>
+                </ul>
+            </li>
+            <p></p>
+            <li>
+                Mail
+                <ul>
+                    aosukeke@gmail.com
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

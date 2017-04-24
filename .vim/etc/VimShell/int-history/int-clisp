@@ -1,0 +1,20 @@
+(defparamator *small* 1)
+(defparameter *small* 1)
+(defparameter *big* 100)
+(defun guess-my-number())
+(if (member 1 '(3 4 5 1)) 'one-is-in-the-list 'one-is-not-in-the-list')
+(member 1(3 4 5 1))
+(member 1'(3 4 5 1))
+`
+(caveman2:make-project #P"/dev/norokeTwitter/" author:)
+(caveman2:make-project #P"/dev/norokeTwitter/" :author "sosuke")
+(ql:add-to-init-file)
+(ql:quickload caveman2)
+(ql:update-all-dists)
+(ql:quickload "caveman2")
+(ql:quickload :caveman2)
+(ql:quickload :caveman)")
+:R3)
+R2
+:R2
+
