@@ -1,0 +1,11 @@
+[user]
+	name = Sosuke Suzuki
+	email = aosukeke@gmail.com
+[color]
+  ui = auto
+[core]
+  excludesfile = ~/.gitignore
+	editor = vim
+[ghq]
+	root = ~/.ghq
+	root = ~/.ghq/src

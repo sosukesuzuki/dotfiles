@@ -4,6 +4,8 @@ export SDKMAN_DIR="/Users/suzuki/.sdkman"
 export XDG_CONFIG_HOME=~/.config
 export PATH=$PATH:/Users/suzuki/.local/bin
 export GIT_EDITOR=emacs
+export GOPATH=$HOME/.go
+export PATH=$HOME/.go/bin:$PATH
 autoload -U compinit
 setopt auto_pushd
 setopt pushd_ignore_dups
