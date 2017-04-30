@@ -11,6 +11,12 @@ setopt no_beep
 autoload -U compinit
 setopt auto_pushd
 setopt pushd_ignore_dups
+setopt nolistbeep
+setopt auto_cd
+setopt auto_param_slash
+setopt auto_param_keys
+setopt brace_ccl
+
 compinit
 
 function cd() {
