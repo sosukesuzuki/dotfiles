@@ -9,3 +9,9 @@
 [ghq]
 	root = ~/.ghq
 	root = ~/.ghq/src
+[alias]
+	st = status
+	ad = add
+	cm = commit
+	ps = push
+	wt = worktree
