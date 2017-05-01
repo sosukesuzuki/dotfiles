@@ -6,7 +6,8 @@ export PATH=$PATH:/Users/suzuki/.local/bin
 export GIT_EDITOR=emacs
 export GOPATH=$HOME/.go
 export PATH=$HOME/.go/bin:$PATH
-
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 setopt no_beep
 autoload -U compinit
 setopt auto_pushd
@@ -49,3 +50,15 @@ PROMPT="
  precmd () { vcs_info }
  RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
+source ~/.zplug/init.zsh
+
+zplug "~/.zsh", from:local
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load --verbose
