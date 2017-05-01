@@ -50,9 +50,18 @@ PROMPT="
  precmd () { vcs_info }
  RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-source ~/.zplug/init.zsh
+ function peco-history-selection() {
+     BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+     CURSOR=$#BUFFER
+     zle reset-prompt
+ }
 
-zplug "~/.zsh", from:local
+ zle -N peco-history-selection
+ bindkey '^R' peco-history-selection
+
+
+source ~/.zplug/init.zsh
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
