@@ -1,1 +1,0 @@
-{'cookpad', 'FIXME', 'Prerequisites', 'will', 'need', 'Leiningen', 'above', 'installed', 'leiningen', 'https:', 'github', 'technomancy', 'Running', 'start', 'server', 'application', 'run:', 'lein', 'ring', 'License', 'Copyright'}

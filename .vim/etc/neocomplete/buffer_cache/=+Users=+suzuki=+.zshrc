@@ -1,1 +1,0 @@
-{'THIS', 'MUST', 'FILE', 'SDKMAN', 'WORK', 'export', 'SDKMAN_DIR', 'Users', 'suzuki', '.sdkman', 'XDG_CONFIG_HOME', '.config', 'PATH', '.local', 'autoload', 'compinit', 'function', 'builtin', 'PROMPT', 'yellow', 'reset_color', 'PROMPT2'}

@@ -1,1 +1,0 @@
-{'Tagged', 'type', 'Semigroup', 'Monoid'}

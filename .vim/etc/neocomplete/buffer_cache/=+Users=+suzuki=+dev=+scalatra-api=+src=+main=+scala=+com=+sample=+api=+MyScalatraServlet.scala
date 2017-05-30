@@ -1,1 +1,0 @@
-{'package', 'sample', 'import', 'scalatra', 'json4s', 'jackson', 'JsonMethods', 'JsonDSL', 'class', 'MyScalatraServlet', 'extends', 'ScalatraApiStack', 'version', 'route', 'article', 'test', 'compact', 'render', 'List', 'This'}

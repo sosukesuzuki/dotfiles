@@ -1,1 +1,0 @@
-{'defproject', 'lein-sample', '-SNAPSHOT', ':description', 'FIXME:', 'write', 'description', ':url', 'http://example.com/FIXME', ':license', ':name', 'Eclipse', 'Public', 'License', 'http://www.eclipse.org/legal/epl-v10.html', ':dependencies', 'org.clojure/clojure', 'korma', 'mysql/mysql-connector-java'}

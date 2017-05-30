@@ -1,1 +1,0 @@
-{'clojure-web-api.handler', ':require', 'compojure.core', ':refer', ':all', 'compojure.route', 'route', 'ring.middleware.defaults', 'wrap-defaults', 'site-defaults', 'defroutes', 'app-routes', 'Hello', 'World', 'route/not-found', 'Found', 'defn', 'getImageUrl', 'Jsoup.connect', 'get.getElementsByTag'}

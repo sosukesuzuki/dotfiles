@@ -1,1 +1,0 @@
-{'import', 'React', 'PropTypes', 'from', 'react', 'const', 'Todo', 'onClick', 'completed', 'text', 'style', 'textDecoration', 'line', 'through', 'none', 'func', 'isRequired', 'bool', 'string', 'export', 'default'}
