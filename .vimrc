@@ -15,6 +15,7 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 
+syntax on
 set list listchars=tab:\▸\-
 set expandtab
 set tabstop=2
