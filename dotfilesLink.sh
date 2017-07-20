@@ -9,3 +9,4 @@ ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.zshenv ~/.zshenv
 ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.gitconfig ~/.gitconfig
+ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.tmux ~/.tmux
