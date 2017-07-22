@@ -171,7 +171,7 @@ values."
       ;; These variables control whether separate commands are bound in the GUI to
       ;; the key pairs C-i, TAB and C-m, RET.
       ;; Setting it to a non-nil value, allows for separate commands under <C-i>
-      ;; and TAB or <C-m> and RET.
+      ;; and TAB or <C-m> and sindentET.
       ;; In the terminal, these pairs are generally indistinguishable, so this only
       ;; works in the GUI. (default nil)
       dotspacemacs-distinguish-gui-tab nil
@@ -306,17 +306,17 @@ values."
     before packages are loaded. If you are unsure, you should try in setting them in
     `dotspacemacs/user-config' first."
       (setq-default
-      standard-indent 2
-      tab-width 2
+      standard-indent 4
+      tab-width 4
       indent-tabs-mode nil
-      js-indent-level 2
-      js2-basic-offset 2
+      js-indent-level 4
+      js2-basic-offset 4
       js2-strict-semi-warning nil
       js2-missing-semi-one-line-override nil
-      web-mode-markup-indent-offset 2
-      web-mode-css-indent-offset 2
-      web-mode-code-indent-offset 2
-      web-mode-indent-style 2
+      web-mode-markup-indent-offset 4
+      web-mode-css-indent-offset 4
+      web-mode-code-indent-offset 4
+      web-mode-indent-style 4
       )
       )
 
