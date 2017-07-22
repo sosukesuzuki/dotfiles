@@ -11,9 +11,13 @@
 	root = ~/.ghq/src
 [alias]
 	st = status
-	ad = add
-	cm = commit
-	ps = push
+	a = add
+	c = commit
+	p = push
 	wt = worktree
+	f = fetch
+	p = pull
+	b = branch
+	co = checkout
 [credential]
 	helper = cache --timeout=3600
