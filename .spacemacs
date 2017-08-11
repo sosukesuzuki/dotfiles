@@ -317,8 +317,11 @@ values."
       web-mode-css-indent-offset 4
       web-mode-code-indent-offset 4
       web-mode-indent-style 4
+      git-magit-status-fullscreen t
+      git-enable-magit-svn-plugin t
       )
-      )
+      (global-git-commit-mode t)
+    )
 
     (defun dotspacemacs/user-config ()
       "Configuration function for user code.
