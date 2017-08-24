@@ -7,6 +7,9 @@ export GIT_EDITOR=emacs
 export GOPATH=$HOME/.go
 export PATH=$HOME/.go/bin:$PATH
 export ZPLUG_HOME=/usr/local/opt/zplug
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 source $ZPLUG_HOME/init.zsh
 setopt no_beep
 autoload -U compinit
