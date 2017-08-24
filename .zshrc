@@ -31,6 +31,7 @@ alias tn='tmux new -s'
 alias td='tmux kill-session -t'
 alias tls='tmux ls'
 alias ta='tmux a -t'
+alias つらい='say 元気だして、まだやれるよ'
 
 PROMPT="
  %{${fg[yellow]}%}%~%{${reset_color}%} 
