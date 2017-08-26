@@ -55,6 +55,7 @@ values."
      react
      elixir
      elm
+     tmux
  osx
      (shell :variables
             shell-default-height 30
