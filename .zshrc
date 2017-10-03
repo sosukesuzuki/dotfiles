@@ -36,6 +36,7 @@ alias tls='tmux ls'
 alias ta='tmux a -t'
 alias つらい='say 元気だして、まだやれるよ'
 
+
 PROMPT="
  %{${fg[yellow]}%}%~%{${reset_color}%} 
  [%n] 👆 (> ω <)👆 $ "
@@ -85,3 +86,10 @@ if ! zplug check --verbose; then
 fi
 
 zplug load --verbose
+
+if [ -d $HOME/.anyenv ]
+then
+  export PATH="$HOME/.anyenv/bin:$PATH"
+  eval "$(anyenv init -)"
+fi
+
