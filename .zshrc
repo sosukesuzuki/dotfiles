@@ -35,8 +35,8 @@ alias td='tmux kill-session -t'
 alias tls='tmux ls'
 alias ta='tmux a -t'
 alias つらい='say 元気だして、まだやれるよ'
-alias typora = 'open -a typora'
-alias rechunk = 'source ~/.chunkwmrc'
+alias typora='open -a typora'
+alias rechunk='source ~/.chunkwmrc'
 
 PROMPT="
  %{${fg[yellow]}%}%~%{${reset_color}%} 
