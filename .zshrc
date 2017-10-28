@@ -28,7 +28,7 @@ function cd() {
 }
 
 alias boost='cd ~/boostnoteapp'
-alias e='emacs'
+alias e='open -a /Applications/Emacs.app'
 alias g='git'
 alias tn='tmux new -s'
 alias td='tmux kill-session -t'
