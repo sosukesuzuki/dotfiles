@@ -37,6 +37,7 @@ alias ta='tmux a -t'
 alias つらい='say 元気だして、まだやれるよ'
 alias typora='open -a typora'
 alias rechunk='source ~/.chunkwmrc'
+alias startmongo='sudo mongod --dbpath /var/lib/mongodb --logpath /var/log/mongodb.log'
 
 PROMPT="
  %{${fg[yellow]}%}%~%{${reset_color}%} 
