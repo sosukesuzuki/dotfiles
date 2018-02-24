@@ -11,13 +11,14 @@
 	root = ~/.ghq/src
 [alias]
 	st = status
-	a = add
-	c = commit
-	p = push
+	ad = add
+	cm = commit
+	pu = push
 	wt = worktree
-	f = fetch
-	p = pull
+	fe = fetch
 	b = branch
 	co = checkout
+	pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 [credential]
 	helper = cache --timeout=3600
