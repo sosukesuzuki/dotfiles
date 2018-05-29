@@ -73,7 +73,6 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('pangloss/vim-javascript', { 'for' : ['javascript', 'javascript.jsx'] })
 
 call dein#add('Lokaltog/vim-powerline')
-call dein#add('christoomey/vim-conflicted')
 
 call dein#end()
 
