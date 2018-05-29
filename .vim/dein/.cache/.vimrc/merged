@@ -1,2 +1,2 @@
 100
-['Shougo/dein.vim', 'Shougo/neocomplete.vim', 'Shougo/neomru.vim', 'Shougo/neosnippet', 'Shougo/unite.vim', 'Shougo/vimproc.vim']
+['Lokaltog/vim-powerline', 'Shougo/dein.vim', 'Shougo/neocomplete.vim', 'Shougo/neomru.vim', 'Shougo/unite.vim', 'Shougo/vimproc.vim', 'christoomey/vim-conflicted', 'pangloss/vim-javascript', 'scrooloose/nerdtree']
