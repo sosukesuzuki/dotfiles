@@ -1,119 +1,137 @@
-# vim-javascript
+lexima.vim
+==========
+[![Build Status](https://travis-ci.org/cohama/lexima.vim.svg)](https://travis-ci.org/cohama/lexima.vim)
 
-JavaScript bundle for vim, this bundle provides syntax highlighting and
-improved indentation.
+Auto close parentheses and repeat by dot dot dot...
+
+Basically, you can automatically close pairs such as `()`, `{}`, `""`, ...
+But in advance, you can also customize the rule to automatically input
+any character on any context.
+
+Screen Shots
+-----------
+![Screen Shot](http://i.gyazo.com/af2d7a59c82f93e49a6fd424dbbf6f88.gif)
 
 
-## Installation
+DEFAULT RULES
+-------------
 
-### Install with [pathogen](https://github.com/tpope/vim-pathogen)
+lexima.vim provides some default rules to input pairs.
+(the cursor position is represented by `|`)
 
-      git clone https://github.com/pangloss/vim-javascript.git ~/.vim/bundle/vim-javascript
+### Basic Rules
+If `g:lexima_enable_basic_rules` is `1`, the following rules are enabled.
+(default value: `1`)
 
-alternatively, use a package manager like [vim-plug](https://github.com/junegunn/vim-plug)
+    Before        Input         After
+    ------------------------------------
+    |             (             (|)
+    ------------------------------------
+    |             "             "|"
+    ------------------------------------
+    ""|           "             """|"""
+    ------------------------------------
+    ''|           '             '''|'''
+    ------------------------------------
+    \|            [             \[|
+    ------------------------------------
+    \|            "             \"|
+    ------------------------------------
+    \|            '             \'|
+    ------------------------------------
+    I|            'm            I'm|
+    ------------------------------------
+    (|)           )             ()|
+    ------------------------------------
+    '|'           '             ''|
+    ------------------------------------
+    (|)           <BS>          |
+    ------------------------------------
+    '|'           <BS>          |
+    ------------------------------------
+
+and much more... (See `g:lexima#default_rules` at `autoload/lexima.vim`)
+
+### New Line Rules
+If `g:lexima_enable_newline_rules` is `1`, the following rules are enabled.
+(default value: `1`)
+
+    Before        Input         After
+    ------------------------------------
+    {|}           <CR>          {
+                                    |
+                                }
+    ------------------------------------
+    {|            <CR>          {
+                                    |
+                                }
+    ------------------------------------
+
+Same as `()` and `[]`.
+
+### Endwise Rules
+If `g:lexima_enable_endwise_rules` is `1`, the following rules are enabled.
+(default value: `1`)
+
+For example, in ruby filetype
+
+    Before        Input         After
+    --------------------------------------
+    if x == 42|   <CR>          if x == 42
+                                    |
+                                end
+    --------------------------------------
+    def foo()|    <CR>          def foo()
+                                    |
+                                end
+    --------------------------------------
+    bar.each do|  <CR>          bar.each do
+                                    |
+                                end
+    --------------------------------------
+
+and same as `module`, `class`, `while` and so on.
+
+In vim filetype, `function`, `if`, `while` ... rules are available.
+And also you can use in sh (zsh) such as `if`, `case`.
 
 
-## Configuration Variables
+CUSTOMIZATION
+-------------
+lexima.vim provides highly customizable interface.
+You can define your own rule by using `lexima#add_rule()`.
 
-The following variables control certain syntax highlighting plugins. You can
-add them to your `.vimrc` to enable their features.
-
------------------
-
-```
-let g:javascript_plugin_jsdoc = 1
-```
-
-Enables syntax highlighting for [JSDocs](http://usejsdoc.org/).
-
-Default Value: 0
-
------------------
-
-```
-let g:javascript_plugin_ngdoc = 1
-```
-
-Enables some additional syntax highlighting for NGDocs. Requires JSDoc plugin
-to be enabled as well.
-
-Default Value: 0
-
------------------
-
-```
-let g:javascript_plugin_flow = 1
-```
-
-Enables syntax highlighting for [Flow](https://flowtype.org/).
-
-Default Value: 0
-
------------------
 
 ```vim
-augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
-augroup END
+" Please add below in your vimrc
+call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'latex'})
+call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'latex'})
+call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'latex'})
 ```
 
-Enables code folding for javascript based on our syntax file.
+You will get
 
-Please note this can have a dramatic effect on performance.
+    Before  Input   After
+    ---------------------
+    |       $       $|$
+    ---------------------
+    $|$     $       $$|
+    ---------------------
+    $|$     <BS>    |
+    ---------------------
 
-
-## Concealing Characters
-
-You can customize concealing characters, if your font provides the glyph you want, by defining one or more of the following
-variables:
-
-    let g:javascript_conceal_function             = "ƒ"
-    let g:javascript_conceal_null                 = "ø"
-    let g:javascript_conceal_this                 = "@"
-    let g:javascript_conceal_return               = "⇚"
-    let g:javascript_conceal_undefined            = "¿"
-    let g:javascript_conceal_NaN                  = "ℕ"
-    let g:javascript_conceal_prototype            = "¶"
-    let g:javascript_conceal_static               = "•"
-    let g:javascript_conceal_super                = "Ω"
-    let g:javascript_conceal_arrow_function       = "⇒"
-    let g:javascript_conceal_noarg_arrow_function = "🞅"
-    let g:javascript_conceal_underscore_arrow_function = "🞅"
+These rules are enabled at only `latex` filetype.
+For more information, please see `:help lexima-customization`
 
 
-You can enable concealing within VIM with:
+DOT REPEATABLE
+--------------
+If you type `foo("bar`, you get
+```
+foo("bar")
+```
 
-    set conceallevel=1
-
-OR if you wish to toggle concealing you may wish to bind a command such as the following which will map `<LEADER>l` (leader is usually the `\` key) to toggling conceal mode:
-
-    map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
-
-
-## Indentation Specific
-
-* `:h cino-:`
-* `:h cino-=`
-* `:h cino-star`
-* `:h cino-(`
-* `:h cino-w`
-* `:h cino-W`
-* `:h cino-U`
-* `:h cino-m`
-* `:h cino-M`
-* `:h 'indentkeys'`
-
-## Contributing
-
-Please follow the general code style
-guides (read the code) and in your pull request explain the reason for the
-proposed change and how it is valuable. All p.r.'s will be reviewed by a
-maintainer(s) then, hopefully, merged.
-
-Thank you!
-
-
-## License
-
-Distributed under the same terms as Vim itself. See `:help license`.
+and once you type `0.`, you finally get
+```
+foo("bar")foo("bar")
+```

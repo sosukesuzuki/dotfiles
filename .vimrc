@@ -3,6 +3,7 @@ set nobackup
 set noswapfile
 set hidden
 set showcmd
+set clipboard=unnamed,autoselect
 
 set laststatus=2
 set t_Co=254
@@ -51,9 +52,62 @@ let g:diffget_local_map = 'gl'
 let g:diffget_upstream_map = 'gu'
 " end
 
-" conf of status line
-set stl+=%{ConflictedVersion()}
-" end
+" conf of neocomplete
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+
+
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+       \ }
+
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+endfunction
+
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+"
 
 if &compatible
     set nocompatible
@@ -65,14 +119,23 @@ call dein#begin(expand('~/.vim/dein'))
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
-call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neocomplete')
 call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/unite.vim')
 call dein#add('scrooloose/nerdtree')
 
-call dein#add('pangloss/vim-javascript', { 'for' : ['javascript', 'javascript.jsx'] })
+
+call dein#add('othree/yajs.vim')
+call dein#add('maxmellon/vim-jsx-pretty')
+call dein#add('othree/javascript-libraries-syntax.vim')
+call dein#add('othree/es.next.syntax.vim')
+call dein#add('othree/html5.vim')
+call dein#add('ternjs/tern_for_vim', {'do': 'npm install'})
+call dein#add('styled-components/vim-styled-components')
+call dein#add('w0rp/ale')
 
 call dein#add('Lokaltog/vim-powerline')
+call dein#add('cohama/lexima.vim')
 
 call dein#end()
 

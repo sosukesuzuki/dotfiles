@@ -1,2 +1,2 @@
 100
-['Lokaltog/vim-powerline', 'Shougo/dein.vim', 'Shougo/neocomplete.vim', 'Shougo/neomru.vim', 'Shougo/unite.vim', 'Shougo/vimproc.vim', 'pangloss/vim-javascript', 'scrooloose/nerdtree']
+['Lokaltog/vim-powerline', 'Shougo/dein.vim', 'Shougo/neocomplete', 'Shougo/neomru.vim', 'Shougo/unite.vim', 'Shougo/vimproc.vim', 'cohama/lexima.vim', 'maxmellon/vim-jsx-pretty', 'othree/es.next.syntax.vim', 'othree/html5.vim', 'othree/javascript-libraries-syntax.vim', 'othree/yajs.vim', 'scrooloose/nerdtree', 'styled-components/vim-styled-components', 'ternjs/tern_for_vim', 'w0rp/ale']

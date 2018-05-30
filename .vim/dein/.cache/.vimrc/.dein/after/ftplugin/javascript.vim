@@ -1,12 +1,17 @@
-" Vim filetype plugin file
-" Language:     JavaScript
-" Maintainer:   vim-javascript community
-" URL:          https://github.com/pangloss/vim-javascript
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim ftplugin file
+"
+" Language: typescript.jsx
+" Maintainer: MaxMEllon <maxmellon1994@gmail.com>
+" Depends: leafgarland/typescript-vim
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-setlocal iskeyword+=$ suffixesadd+=.js
-
-if exists('b:undo_ftplugin')
-  let b:undo_ftplugin .= ' | setlocal iskeyword< suffixesadd<'
-else
-  let b:undo_ftplugin = 'setlocal iskeyword< suffixesadd<'
+" modified from html.vim
+if exists("loaded_matchit")
+  let b:match_ignorecase = 0
+  let b:match_words = '(:),\[:\],{:},<:>,' .
+        \ '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endif
+
+setlocal suffixesadd+=.jsx
