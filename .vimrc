@@ -99,28 +99,14 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.vim/dein'))
 
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+let s:toml_dir = expand('~/.vim/config')
 
-call dein#add('Shougo/neocomplete')
-call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/unite.vim')
-call dein#add('scrooloose/nerdtree')
+call dein#load_toml(s:toml_dir . '/dein.toml', {'lazy': 0})
 
-
-call dein#add('othree/yajs.vim')
-call dein#add('maxmellon/vim-jsx-pretty')
-call dein#add('othree/javascript-libraries-syntax.vim')
-call dein#add('othree/es.next.syntax.vim')
-call dein#add('othree/html5.vim')
-call dein#add('ternjs/tern_for_vim', {'do': 'npm install'})
-call dein#add('styled-components/vim-styled-components')
-call dein#add('w0rp/ale')
-
-call dein#add('Lokaltog/vim-powerline')
-call dein#add('cohama/lexima.vim')
+call dein#load_toml(s:toml_dir . '/dein_lazy.toml', {'lazy': 1})
 
 call dein#end()
+call dein#save_state()
 
 autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
