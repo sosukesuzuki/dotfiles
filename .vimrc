@@ -54,9 +54,7 @@ let g:diffget_upstream_map = 'gu'
 
 " conf of neocomplete
 let g:acp_enableAtStartup = 0
-" Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 
 
@@ -80,22 +78,8 @@ function! s:my_cr_function()
 endfunction
 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -107,7 +91,6 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"
 
 if &compatible
     set nocompatible
