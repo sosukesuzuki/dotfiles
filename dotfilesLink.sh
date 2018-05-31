@@ -1,7 +1,5 @@
 #!/bin/sh
 
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.vim/config ~/.vim/config
 ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.spacemacs ~/.spacemacs
 ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.gitignore ~/.gitignore
 ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.emacs.d ~/.emacs.d
