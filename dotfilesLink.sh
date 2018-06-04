@@ -1,13 +1,14 @@
 #!/bin/sh
 
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.spacemacs ~/.spacemacs
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.gitignore ~/.gitignore
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.emacs.d ~/.emacs.d
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.zshenv ~/.zshenv
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.gitconfig ~/.gitconfig
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.tmux ~/.tmux
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.skhdrc ~/.skhdrc
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.chunkwmrc ~/.chunkwmrc
-ln -sf ~/.ghq/github.com/sosukesuzuki/dotfiles/.chunkwm_plugins ~/.chunkwm_plugins
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+
+ln -sf ${SCRIPT_DIR}/.spacemacs ~/.spacemacs
+ln -sf ${SCRIPT_DIR}/.gitignore ~/.gitignore
+ln -sf ${SCRIPT_DIR}/.tmux.conf ~/.tmux.conf
+ln -sf ${SCRIPT_DIR}/.zshrc ~/.zshrc
+ln -sf ${SCRIPT_DIR}/.zshenv ~/.zshenv
+ln -sf ${SCRIPT_DIR}/.gitconfig ~/.gitconfig
+ln -sf ${SCRIPT_DIR}/.tmux ~/.tmux
+ln -sf ${SCRIPT_DIR}/.skhdrc ~/.skhdrc
+ln -sf ${SCRIPT_DIR}/.chunkwmrc ~/.chunkwmrc
+ln -sf ${SCRIPT_DIR}/.chunkwm_plugins ~/.chunkwm_plugins
