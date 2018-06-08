@@ -12,4 +12,4 @@ ln -sf ${SCRIPT_DIR}/.tmux ~/.tmux
 ln -sf ${SCRIPT_DIR}/.skhdrc ~/.skhdrc
 ln -sf ${SCRIPT_DIR}/.chunkwmrc ~/.chunkwmrc
 ln -sf ${SCRIPT_DIR}/.chunkwm_plugins ~/.chunkwm_plugins
-ln -sf ${SCRIPT_DIR}/.alacritty.yml ~/.config/alacritty/alacritty.yml
+ln -sf ${SCRIPT_DIR}/alacritty.yml ~/.config/alacritty/alacritty.yml
