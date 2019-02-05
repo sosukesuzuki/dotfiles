@@ -12,6 +12,8 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/usr/local/Cellar/postgresql/10.4/bin/
+export PATH=$PATH:$HOME/cloud_sql_proxy
+export PATH=${0:A:h}/bin:$PATH
 export XDG_CONFIG_HOME="$HOME/.config"
 source $ZPLUG_HOME/init.zsh
 setopt no_beep
@@ -91,3 +93,13 @@ if ! zplug check --verbose; then
 fi
 
 zplug load --verbose
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/suzuki/dev/issuehunt-cron-server/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/suzuki/dev/issuehunt-cron-server/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/suzuki/dev/issuehunt-cron-server/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/suzuki/dev/issuehunt-cron-server/node_modules/tabtab/.completions/sls.zsh
+
+# OPAM configuration
+. /Users/suzuki/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
