@@ -1,5 +1,3 @@
-colors
-
 bindkey -v
 setopt no_beep
 setopt auto_pushd
