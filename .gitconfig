@@ -1,24 +1,23 @@
 [user]
-	name = Sosuke Suzuki
-	email = aosukeke@gmail.com
+  name = Sosuke Suzuki
+  email = aosukeke@gmail.com
 [color]
   ui = auto
 [core]
   excludesfile = ~/.gitignore
-	editor = vim -c \"set fenc=utf-8\"
+  editor = vim -c \"set fenc=utf-8\"
 [ghq]
-	root = ~/.ghq
-	root = ~/.ghq/src
+  root = /mnt/c/Users/aosuk/.ghq
 [alias]
-	st = status
-	ad = add
-	cm = commit
-	pu = push
-	wt = worktree
-	fe = fetch
-	b = branch
-	co = checkout
-	pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  st = status
+  ad = add
+  cm = commit
+  pu = push
+  wt = worktree
+  fe = fetch
+  b = branch
+  co = checkout
+  pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
   pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 [credential]
-	helper = cache --timeout=3600
+  helper = cache --timeout=3600
